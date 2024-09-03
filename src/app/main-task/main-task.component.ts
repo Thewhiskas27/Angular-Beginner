@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { STATEENUM } from '../state-enum';
 import { TaskList } from '../task-list';
-import { CRUDTaskListService } from '../crudtask-list.service';
-import { ByStatutTaskListService } from '../by-statut-task-list.service';
-import { Task } from '../task';
+import { TaskFacadeService } from '../task-facade.service';
 
 @Component({
   selector: 'app-main-task',
@@ -12,12 +9,16 @@ import { Task } from '../task';
 })
 export class MainTaskComponent implements OnInit {
   tasklist!:TaskList;
-
-  constructor(private byStatutTaskListService: ByStatutTaskListService){}
+  constructor(private taskFacade: TaskFacadeService){}
+  ngOnInit(): void {
+   this.tasklist=this.taskFacade.getAllTasks();
+   console.log(this.tasklist);
+  }
+  /*constructor(private byStatutTaskListService: ByStatutTaskListService){}
   ngOnInit(): void {
    this.tasklist=this.byStatutTaskListService.getAllTasks();
    console.log(this.tasklist);
-  }
+  }*/
   /*constructor(private crudTaskService: CRUDTaskListService){}
   ngOnInit(): void {
    this.tasklist=this.crudTaskService.getAllTasks();
