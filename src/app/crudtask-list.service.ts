@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TaskList } from './task-list';
 import { STATEENUM } from './state-enum';
 import { CRUDTaskList } from './crudtask-list';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class CRUDTaskListService implements CRUDTaskList {
     }]}
   tasklist!:TaskList;
   
-  getAllTasks():TaskList{
-    return this.tasklist;
+  getAllTasks():Observable<TaskList>{
+    return of(this.tasklist);
   }
 }

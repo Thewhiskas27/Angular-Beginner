@@ -9,8 +9,10 @@ import { ByStatutTaskList } from './by-statut-task-list';
 export class ByStatutTaskListService implements ByStatutTaskList{
 
   constructor(private CRUDService: CRUDTaskListService) { 
-    this.tasklist = this.CRUDService.getAllTasks();
-  }
+    this.CRUDService.getAllTasks().subscribe((tasklist)=>{
+      this.tasklist = tasklist;
+  })
+}
   tasklist!:TaskList;
   
   getAllTasks():TaskList{

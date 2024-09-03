@@ -11,8 +11,10 @@ export class MainTaskComponent implements OnInit {
   tasklist!:TaskList;
   constructor(private taskFacade: TaskFacadeService){}
   ngOnInit(): void {
-   this.tasklist=this.taskFacade.getAllTasks();
-   console.log(this.tasklist);
+   this.taskFacade.getAllTasks().subscribe((tasklist)=>{
+    this.tasklist = tasklist;
+    console.log(this.tasklist);
+   });
   }
   /*constructor(private byStatutTaskListService: ByStatutTaskListService){}
   ngOnInit(): void {
